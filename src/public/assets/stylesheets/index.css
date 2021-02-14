@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -6,6 +8,7 @@
 
 body {
   line-height: 1.5;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 ul {
@@ -14,7 +17,6 @@ ul {
 
 a {
   text-decoration: none;
-  color: rgb(58, 55, 55);
 }
 
 h1 {
@@ -26,6 +28,45 @@ img {
   width: 100%;
 }
 
+.navbar {
+  background-color: rgb(52, 52, 228);
+  color: white;
+  height: 70px;
+}
+
+.navbar .flex {
+  justify-content: space-between;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar a {
+  color: white;
+  padding: 10px;
+  margin: 0 5px;
+}
+
+.navbar a:hover {
+  border-bottom: 1px solid white;
+  font-size: 1.1em;
+  transition: 0.5s;
+}
+
+.container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  overflow: auto;
+  padding: 0 40px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* -------------------  MOBILE  --------------------- */
 
