@@ -28,10 +28,14 @@ img {
   width: 100%;
 }
 
+.logo {
+  font-size: 2.5em;
+}
+
 .navbar {
   background-color: rgb(52, 52, 228);
   color: white;
-  height: 70px;
+  height: 100px;
 }
 
 .navbar .flex {
@@ -50,7 +54,6 @@ img {
 
 .navbar a:hover {
   border-bottom: 1px solid white;
-  font-size: 1.1em;
   transition: 0.5s;
 }
 
@@ -78,62 +81,7 @@ img {
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(9, 5vw);
   grid-gap: 10px;
-  /* border: 2px solid red; */
-}
-
-.gallery-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.gallery-item-1 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 4;
-}
-
-.gallery-item-2 {
-  grid-column-start: 4;
-  grid-column-end: 7;
-  grid-row-start: 1;
-  grid-row-end: 4;
-}
-
-.gallery-item-3 {
-  grid-column-start: 7;
-  grid-column-end: 11;
-  grid-row-start: 1;
-  grid-row-end: 5;
-}
-
-.gallery-item-4 {
-  grid-column-start: 1;
-  grid-column-end: 7;
-  grid-row-start: 4;
-  grid-row-end: 10;
-}
-
-.gallery-item-5 {
-  grid-column-start: 7;
-  grid-column-end: 9;
-  grid-row-start: 5;
-  grid-row-end: 7;
-}
-
-.gallery-item-6 {
-  grid-column-start: 9;
-  grid-column-end: 11;
-  grid-row-start: 5;
-  grid-row-end: 7;
-}
-
-.gallery-item-7 {
-  grid-column-start: 7;
-  grid-column-end: 11;
-  grid-row-start: 7;
-  grid-row-end: 10;
+  border: 2px solid red;
 }
 
 /* -------------------  MOBILE  --------------------- */
