@@ -23,10 +23,10 @@ const App = () => {
             <h1 class="logo">Mars Rover Dashboard</h1>
             <nav>
                 <ul>
-                    <li><a href="#" onclick="updateUI('spirit', clearUI())">Spirit</a></li>
-                    <li><a href="#" onclick="updateUI('opportunity', clearUI())">Opportunity</a></li>
-                    <li><a href="#" onclick="updateUI('curiosity', clearUI())">Curiosity</a></li>
-                    <li><a href="#" onclick="updateUI('perseverance', clearUI())">Perseverance</a></li>
+                    <li><a href="#" onclick="roverSelection('spirit', updateUI)">Spirit</a></li>
+                    <li><a href="#" onclick="roverSelection('opportunity', updateUI)">Opportunity</a></li>
+                    <li><a href="#" onclick="roverSelection('curiosity', updateUI)">Curiosity</a></li>
+                    <li><a href="#" onclick="roverSelection('perseverance', updateUI)">Perseverance</a></li>
                 </ul>
             </nav>
         </div>
@@ -52,17 +52,14 @@ const App = () => {
     `
 }
 
+
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', () => {
     render(root, store)
 });
 
-// ------------------------------------------------------  COMPONENTS
-// helper function to clear UI between requests
-function clearUI() {
-    document.getElementById('image-gallery').innerHTML = '';
-};
 
+// ------------------------------------------------------  COMPONENTS
 // ------------------------------------------------------  API CALLS
 // pure functions
 async function getRoverPhotos(rover) {
@@ -93,11 +90,21 @@ async function getRoverData(rover) {
     }
 };
 
-// higher order function to update UI after clicking on desired rover
-async function updateUI(rover) {
+
+// higher order function to process rover click, then update UI through callback
+async function roverSelection(rover, callBack) {
+    // clear UI between requests
+    document.getElementById('image-gallery').innerHTML = '';
+
     let data = await getRoverData(rover);
     let photos = await getRoverPhotos(rover);
 
+    callBack(data, photos);
+};
+
+
+// higher order function that returns IIFE. updates UI after clicking on desired rover
+async function updateUI(data, photos) {
     let roverName, roverLaunch, roverLanding, roverStatus, roverLatestPhotosDate, roverTotalPhotos;
     roverName = data.roverData.photo_manifest.name;
     roverLaunch = data.roverData.photo_manifest.launch_date;
@@ -113,12 +120,11 @@ async function updateUI(rover) {
     document.getElementById('rover-latest-photos').innerHTML = roverLatestPhotosDate;
     document.getElementById('rover-total-photos').innerHTML = roverTotalPhotos;
 
-    // use higher order function map
-    photos.roverImages.photos.map(photo => {
+    return (function() {photos.roverImages.photos.map(photo => {
         let imageElement = document.createElement('img');
         imageElement.className = 'grid-item';
         imageElement.setAttribute('src', photo.img_src);
         
         document.getElementById('image-gallery').appendChild(imageElement);
-    });
+    })})();
 };
